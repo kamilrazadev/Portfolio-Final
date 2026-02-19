@@ -1,26 +1,144 @@
 @import "tailwindcss";
 
 :root {
+  /* Light Theme */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0a0a0a;
+  
+  --primary: #6d28d9; /* Purple 700 */
+  --primary-foreground: #ffffff;
+  
+  --secondary: #eef2ff; /* Indigo 50 */
+  --secondary-foreground: #4f46e5; /* Indigo 600 */
+  
+  --accent: #06b6d4; /* Cyan 500 (Glacier Blue) */
+  --accent-foreground: #ffffff;
+  
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  
+  --card: rgba(255, 255, 255, 0.7);
+  --card-foreground: #0a0a0a;
+  
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  
+  --radius: 0.75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Theme */
+    --background: #030014; /* Deep Void Purple */
+    --foreground: #fafafa;
+    
+    --primary: #8b5cf6; /* Violet 500 */
+    --primary-foreground: #ffffff;
+    
+    --secondary: #1e1b4b; /* Indigo 950 */
+    --secondary-foreground: #c7d2fe; /* Indigo 200 */
+    
+    --accent: #22d3ee; /* Cyan 400 (Glacier Blue) */
+    --accent-foreground: #0f172a;
+    
+    --muted: #27272a;
+    --muted-foreground: #a1a1aa;
+    
+    --card: rgba(10, 10, 10, 0.6);
+    --card-foreground: #fafafa;
+    
+    --border: #27272a;
+    --input: #27272a;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  
+  --color-border: var(--border);
+  --color-input: var(--input);
+  
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-spotlight: spotlight 2s ease .75s 1 forwards;
+  
+  @keyframes accordion-down {
+    from { height: 0 }
+    to { height: var(--radix-accordion-content-height) }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height) }
+    to { height: 0 }
+  }
+  @keyframes spotlight {
+    0% { opacity: 0; transform: translate(-72%, -62%) scale(0.5); }
+    100% { opacity: 1; transform: translate(-50%,-40%) scale(1); }
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  @apply antialiased selection:bg-primary/20 selection:text-primary;
+}
+
+/* Glassmorphism Utilities */
+.glass-card {
+  @apply bg-card/60 backdrop-blur-md border border-white/10 dark:border-white/5 shadow-lg dark:shadow-purple-900/10;
+}
+
+.glass-nav {
+  @apply bg-background/70 backdrop-blur-lg border-b border-white/10 dark:border-white/5 sticky top-0 z-50;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-accent;
+}
+
+.glow-border {
+  @apply relative rounded-xl border border-transparent bg-clip-padding;
+}
+.glow-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/30 rounded-full hover:bg-primary/50 transition-colors;
 }
