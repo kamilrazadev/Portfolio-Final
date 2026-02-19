@@ -2,7 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { ChevronDown, MessageCircle } from "lucide-react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Plus, Minus, ArrowRight } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const faqs = [
   {
@@ -11,106 +14,137 @@ const faqs = [
   },
   {
     question: "What technologies does he specialize in?",
-    answer: "He specializes in the MERN Stack (MongoDB, Express, React, Node.js), Next.js, Tailwind CSS, Stripe integrations, AWS deployment, and secure architecture design including AES-256 and RBAC."
+    answer: "He specializes in the MERN Stack (MongoDB, Express, React, Node.js), Next.js, Tailwind CSS, Stripe integrations, AWS deployment, and secure architecture design."
   },
   {
     question: "What is his experience level?",
-    answer: "With over 3 years of hands-on experience, Kamil has worked across multiple industries including fintech, e-commerce, and healthcare, currently leading initiatives at LaunchBox Global."
+    answer: "With over 3 years of hands-on experience, Kamil has worked across multiple industries including fintech, e-commerce, and healthcare."
   },
   {
     question: "Is he available for freelance or full-time roles?",
     answer: "Yes, he is open to full-time opportunities, long-term contracts, and high-impact project-based collaborations."
-  },
-  {
-    question: "How does he ensure application security?",
-    answer: "He follows security-first principles, implementing AES-256 encryption, Two-Factor Authentication (2FA), Role-Based Access Control (RBAC), and end-to-end encryption (E2EE) where necessary."
   }
 ];
 
 export default function FAQ() {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".faq-item", {
-        scrollTrigger: {
-          trigger: ".faq-container",
-          start: "top 85%",
-          toggleActions: "play none none none",
-        },
-        x: -30,
-        // opacity: 0,
-        stagger: 0.1,
-        duration: 0.6,
-      });
-    }, containerRef);
+    const timer = setTimeout(() => {
+      const ctx = gsap.context(() => {
+        const chars = gsap.utils.toArray(".faq-char");
+        gsap.fromTo(chars, 
+          { y: "110%" },
+          {
+            scrollTrigger: {
+              trigger: ".faq-heading-container",
+              start: "top 90%",
+              toggleActions: "play none none none",
+            },
+            y: 0,
+            duration: 1,
+            stagger: 0.02,
+            ease: "power4.out",
+          }
+        );
 
-    const timer = setTimeout(() => ScrollTrigger.refresh(), 500);
+        gsap.fromTo(".faq-visual", { scale: 0.8, opacity: 0 }, {
+          scrollTrigger: {
+            trigger: ".faq-visual",
+            start: "top 80%",
+          },
+          scale: 1,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power3.out"
+        });
+      }, containerRef);
+      ScrollTrigger.refresh();
+    }, 500);
     return () => {
-      ctx.revert();
       clearTimeout(timer);
+      ScrollTrigger.getAll().forEach(t => t.kill());
     };
   }, []);
 
+  const renderSplitText = (text) => {
+    return text.split(" ").map((word, i) => (
+      <span key={i} className="inline-block whitespace-nowrap mr-[0.25em] last:mr-0">
+        {word.split("").map((char, j) => (
+          <span key={j} className="inline-block overflow-hidden leading-[1.1] translate-y-[0.1em]">
+            <span className="faq-char inline-block translate-y-full">{char}</span>
+          </span>
+        ))}
+      </span>
+    ));
+  };
+
   return (
-    <section id="faq" ref={containerRef} className="py-24 bg-background relative">
+    <section id="faq" ref={containerRef} className="py-20 bg-background relative overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <div className="faq-container space-y-4">
-            <div className="flex items-center gap-3 text-primary font-bold mb-4">
-              <MessageCircle className="w-6 h-6" />
-              <span className="uppercase tracking-widest text-sm">Common Questions</span>
-            </div>
-            <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">
-              Answering your <span className="text-primary">concerns</span> about my expertise.
-            </h2>
-            
-            <div className="space-y-4">
-              {faqs.map((faq, idx) => (
-                <div 
-                  key={idx} 
-                  className={`faq-item group overflow-hidden rounded-2xl border transition-all duration-300 ${activeIndex === idx ? 'border-primary bg-primary/5' : 'border-border bg-card hover:border-primary/30'}`}
+        <div className="faq-heading-container mb-20">
+            <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-primary mb-6">05. FAQ</h2>
+            <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none flex flex-wrap">
+                {renderSplitText("Intellectual")}
+                <span className="text-muted-foreground">{renderSplitText("Inquiry.")}</span>
+            </h3>
+        </div>
+
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
+          {/* Creative Accordion List */}
+          <div className="w-full lg:w-3/5 space-y-2">
+            {faqs.map((faq, idx) => (
+              <div 
+                key={idx} 
+                className={`group relative overflow-hidden transition-all duration-700 ${activeIndex === idx ? 'py-12 px-8 bg-muted/30 rounded-[2.5rem]' : 'py-8 px-4 border-b border-border/50 hover:px-8'}`}
+              >
+                <button 
+                  onClick={() => setActiveIndex(idx)}
+                  className="flex w-full items-center justify-between text-left relative z-10"
                 >
-                  <button 
-                    onClick={() => setActiveIndex(activeIndex === idx ? null : idx)}
-                    className="flex w-full items-center justify-between p-6 text-left"
-                  >
-                    <span className="text-lg font-semibold">{faq.question}</span>
-                    <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform duration-500 ${activeIndex === idx ? 'rotate-180 text-primary' : 'group-hover:text-primary'}`} />
-                  </button>
-                  <div 
-                    className={`px-6 overflow-hidden transition-all duration-500 ease-in-out ${activeIndex === idx ? 'max-h-40 pb-6 opacity-100' : 'max-h-0 opacity-0'}`}
-                  >
-                    <p className="text-muted-foreground leading-relaxed">
+                  <div className="flex items-center gap-8">
+                    <span className={`text-sm font-black transition-colors duration-500 ${activeIndex === idx ? 'text-primary' : 'text-muted-foreground/30'}`}>
+                      0{idx + 1}
+                    </span>
+                    <span className={`text-xl md:text-3xl font-bold uppercase tracking-tighter transition-all duration-500 ${activeIndex === idx ? 'scale-105' : 'group-hover:translate-x-2'}`}>
+                      {faq.question}
+                    </span>
+                  </div>
+                  <div className={`transition-transform duration-500 ${activeIndex === idx ? 'rotate-180 text-primary' : 'text-muted-foreground'}`}>
+                    {activeIndex === idx ? <Minus className="w-6 h-6" /> : <Plus className="w-6 h-6" />}
+                  </div>
+                </button>
+                
+                <div className={`grid transition-all duration-700 ease-in-out ${activeIndex === idx ? 'grid-rows-[1fr] mt-8 opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                  <div className="overflow-hidden">
+                    <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl pl-12 border-l border-primary/20">
                       {faq.answer}
                     </p>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
-          <div className="hidden lg:flex flex-col justify-center items-center h-full">
-            <div className="relative w-full max-w-md p-8 rounded-[40px] glass-card border border-primary/20 bg-primary/5">
-              <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 blur-3xl rounded-full" />
-              <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-accent/20 blur-3xl rounded-full" />
-              
-              <div className="relative z-10 space-y-6">
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 w-fit">
-                  <MessageCircle className="w-10 h-10 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold">Have a specific project in mind?</h3>
-                <p className="text-muted-foreground">
-                  I'm always excited to hear about new ideas and challenges. Let's discuss how we can build something extraordinary together.
-                </p>
-                <a 
-                  href="#contact" 
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-white font-medium hover:scale-105 transition-transform"
-                >
-                  Get in touch
-                </a>
-              </div>
+          {/* Abstract Visual Element */}
+          <div className="hidden lg:block w-2/5">
+            <div className="faq-visual relative aspect-square">
+               <div className="absolute inset-0 rounded-full border border-primary/20 animate-[spin_20s_linear_infinite]" />
+               <div className="absolute inset-4 rounded-full border border-dashed border-muted-foreground/20 animate-[spin_15s_linear_infinite_reverse]" />
+               <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center space-y-2">
+                     <span className="text-8xl font-black text-primary/10">?</span>
+                     <p className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground">Knowledge Base</p>
+                  </div>
+               </div>
+               {/* Floating Info Pill */}
+               <div className="absolute top-1/4 -right-10 p-4 bg-background border border-border rounded-2xl shadow-2xl animate-bounce">
+                  <div className="flex items-center gap-3">
+                     <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                     <span className="text-[10px] font-black uppercase tracking-widest">Active Response</span>
+                  </div>
+               </div>
             </div>
           </div>
         </div>

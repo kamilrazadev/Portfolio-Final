@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -35,39 +36,39 @@ export default function Navbar() {
           ? "bg-background/70 backdrop-blur-xl border-white/10 shadow-lg dark:shadow-purple-900/5 ring-1 ring-white/5" 
           : "bg-background/30 backdrop-blur-md border-white/5 shadow-sm"
       )}>
-        {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group px-4">
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl group-hover:scale-110 transition-transform">
-              K
-            </div>
-            <span className="font-bold text-xl tracking-tight hidden sm:block">
-              Kamil <span className="text-primary">Raza</span>
-            </span>
-          </a>
-
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8 px-8">
-            {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-
-          {/* CTA Button */}
-          <div className="flex items-center gap-2 pr-2">
-            <a 
-              href="#contact" 
-              className="hidden sm:flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition-all hover:scale-105 active:scale-95 shadow-md shadow-primary/20"
-            >
-              Contact Me <ArrowRight className="w-4 h-4" />
-            </a>
-
-            {/* Mobile Menu Toggle */}
+                  {/* Logo */}
+                  <a href="#" className="flex items-center gap-2 group px-4">
+                    <div className="w-10 h-10 rounded-full bg-foreground flex items-center justify-center text-background font-black text-xl group-hover:scale-110 transition-transform">
+                      K
+                    </div>
+                    <span className="font-black text-xl tracking-tighter hidden sm:block uppercase">
+                      Kamil <span className="opacity-50 font-medium">Raza</span>
+                    </span>
+                  </a>
+        
+                  {/* Desktop Nav */}
+                  <div className="hidden md:flex items-center gap-8 px-8">
+                    {navLinks.map((link) => (
+                      <a 
+                        key={link.name} 
+                        href={link.href}
+                        className="text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {link.name}
+                      </a>
+                    ))}
+                  </div>
+        
+                  {/* CTA Button */}
+                  <div className="flex items-center gap-2 pr-2">
+                    <ThemeToggle />
+                    <a 
+                      href="#contact" 
+                      className="hidden sm:flex items-center gap-2 px-6 py-2.5 rounded-full bg-foreground text-background text-xs font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-xl"
+                    >
+                      Contact <ArrowRight className="w-4 h-4" />
+                    </a>
+                    {/* Mobile Menu Toggle */}
             <button 
               className="md:hidden p-3 rounded-full hover:bg-secondary transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

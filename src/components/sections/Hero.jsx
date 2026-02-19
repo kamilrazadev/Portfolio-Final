@@ -2,94 +2,116 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ArrowRight, Download, Mail } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 
 export default function Hero() {
-  const heroRef = useRef(null);
-  const textRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".hero-text", {
-        y: 50,
+      // Animate characters
+      const chars = document.querySelectorAll(".pixel-char");
+      
+      gsap.from(chars, {
         opacity: 0,
+        scale: 2,
+        filter: "blur(15px)",
+        x: () => Math.random() * 160 - 80,
+        y: () => Math.random() * 160 - 80,
         duration: 1,
+        stagger: {
+          amount: 0.6,
+          from: "random"
+        },
+        ease: "power4.out",
+      });
+
+      gsap.from(".hero-reveal", {
+        opacity: 0,
+        y: 20,
+        duration: 0.8,
+        delay: 0.8,
         stagger: 0.2,
         ease: "power3.out",
       });
-      
-      gsap.from(".hero-buttons", {
-        y: 20,
-        opacity: 0,
-        duration: 0.8,
-        delay: 0.8,
-        ease: "power3.out",
+
+      // Simple float animation for scroll indicator
+      gsap.to(".scroll-indicator", {
+        y: 10,
+        repeat: -1,
+        yoyo: true,
+        duration: 1.5,
+        ease: "sine.inOut"
       });
-    }, heroRef);
+    }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
-  return (
-    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Background Gradient Blob */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-primary/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-accent/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
+  const namePart1 = "MUHAMMAD";
+  const namePart2 = "KAMIL RAZA";
 
-      <div className="container mx-auto px-6 relative z-10 text-center">
-        <div className="max-w-4xl mx-auto space-y-6">
-          <div className="hero-text inline-block px-4 py-2 rounded-full border border-primary/20 bg-primary/10 text-primary text-sm font-medium mb-4">
-            🚀 Full Stack MERN Developer
+  const renderChars = (text) => {
+    return text.split("").map((char, i) => (
+      <span 
+        key={i} 
+        className="pixel-char inline-block"
+      >
+        {char === " " ? "\u00A0" : char}
+      </span>
+    ));
+  };
+
+  return (
+    <section ref={containerRef} className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden bg-background">
+      {/* Subtle Mesh Background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_50%,var(--primary)_0%,transparent_50%)] blur-[120px] opacity-10 dark:opacity-20" />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10 text-center -mt-10">
+        <div className="max-w-5xl mx-auto">
+          <div className="hero-reveal inline-block px-4 py-1 rounded-full border border-border bg-muted/50 text-muted-foreground text-[10px] font-bold uppercase tracking-[0.3em] mb-8">
+            Available for New Opportunities
           </div>
           
-          <h1 className="hero-text text-5xl md:text-7xl font-bold tracking-tight">
-            Muhammad Kamil <span className="text-primary">Raza</span>
+          <h1 className="flex flex-col items-center leading-[0.85] mb-8">
+            <span className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tighter uppercase block">
+              {renderChars(namePart1)}
+            </span>
+            <span className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tighter uppercase block text-primary">
+              {renderChars(namePart2)}
+            </span>
           </h1>
           
-          <h2 className="hero-text text-2xl md:text-3xl font-medium text-muted-foreground">
-            Building secure, high-performance digital platforms that <span className="text-accent">scale with confidence</span>.
-          </h2>
+          <div className="hero-reveal space-y-6 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl font-medium text-muted-foreground leading-relaxed">
+              Full Stack Architect specializing in <span className="text-foreground font-bold underline decoration-primary/30 underline-offset-4">Scalable MERN Ecosystems</span> & Secure Backend Engineering.
+            </p>
+          </div>
           
-          <p className="hero-text text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            I design and develop modern, scalable web applications using the MERN Stack, with a strong focus on performance, security, and clean architecture.
-          </p>
-          
-          <div className="hero-buttons flex flex-wrap justify-center gap-4 mt-8">
+          <div className="hero-reveal flex flex-wrap justify-center gap-4 mt-10">
             <a 
               href="#projects" 
-              className="group relative inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-primary rounded-full overflow-hidden transition-all hover:bg-primary/90 hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+              className="group flex items-center gap-3 px-8 py-4 bg-foreground text-background rounded-full font-bold text-base hover:scale-105 transition-all shadow-2xl"
             >
-              <span className="relative z-10 flex items-center gap-2">
-                View Projects <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </span>
+              Explore Work <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             
             <a 
               href="/resume.pdf" 
-              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-foreground bg-background border border-border rounded-full hover:bg-secondary/50 transition-all hover:scale-105"
+              className="flex items-center gap-3 px-8 py-4 border border-border rounded-full font-bold text-base hover:bg-muted transition-all"
             >
-              <span className="flex items-center gap-2">
-                Download CV <Download className="w-4 h-4" />
-              </span>
-            </a>
-
-            <a 
-              href="#contact" 
-              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-foreground bg-transparent border border-transparent hover:text-primary transition-colors"
-            >
-              <span className="flex items-center gap-2">
-                Hire Me <Mail className="w-4 h-4" />
-              </span>
+              Resume <Download className="w-5 h-5" />
             </a>
           </div>
         </div>
       </div>
       
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
-        <div className="w-6 h-10 border-2 border-foreground/30 rounded-full flex justify-center pt-2">
-          <div className="w-1 h-2 bg-foreground/50 rounded-full" />
-        </div>
+      {/* Refined Scroll Indicator */}
+      <div className="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30">
+        <span className="text-[8px] uppercase tracking-[0.6em] font-bold">Scroll</span>
+        <div className="w-px h-8 bg-gradient-to-b from-foreground to-transparent" />
       </div>
     </section>
   );

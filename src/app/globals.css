@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 :root {
   /* Light Theme */
   --background: #ffffff;
@@ -26,30 +28,28 @@
   --radius: 0.75rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Dark Theme */
-    --background: #030014; /* Deep Void Purple */
-    --foreground: #fafafa;
-    
-    --primary: #8b5cf6; /* Violet 500 */
-    --primary-foreground: #ffffff;
-    
-    --secondary: #1e1b4b; /* Indigo 950 */
-    --secondary-foreground: #c7d2fe; /* Indigo 200 */
-    
-    --accent: #22d3ee; /* Cyan 400 (Glacier Blue) */
-    --accent-foreground: #0f172a;
-    
-    --muted: #27272a;
-    --muted-foreground: #a1a1aa;
-    
-    --card: rgba(10, 10, 10, 0.6);
-    --card-foreground: #fafafa;
-    
-    --border: #27272a;
-    --input: #27272a;
-  }
+.dark {
+  /* Dark Theme */
+  --background: #030014; /* Deep Void Purple */
+  --foreground: #fafafa;
+  
+  --primary: #8b5cf6; /* Violet 500 */
+  --primary-foreground: #ffffff;
+  
+  --secondary: #1e1b4b; /* Indigo 950 */
+  --secondary-foreground: #c7d2fe; /* Indigo 200 */
+  
+  --accent: #22d3ee; /* Cyan 400 (Glacier Blue) */
+  --accent-foreground: #0f172a;
+  
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+  
+  --card: rgba(10, 10, 10, 0.6);
+  --card-foreground: #fafafa;
+  
+  --border: #27272a;
+  --input: #27272a;
 }
 
 @theme inline {
