@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ChatBot from "@/components/ChatBot";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -83,8 +84,8 @@ export default function RootLayout({ children }) {
               "jobTitle": "Full Stack MERN Developer",
               "url": "https://kamilraza.me",
               "sameAs": [
-                "https://linkedin.com/in/kamilraza",
-                "https://github.com/kamilraza"
+                "https://linkedin.com/in/kamilrazadev",
+                "https://github.com/kamilrazadev"
               ],
               "knowsAbout": ["React.js", "Next.js", "Node.js", "MongoDB", "MERN Stack", "Cybersecurity", "Cloud Architecture"],
               "alumniOf": {
@@ -109,6 +110,7 @@ export default function RootLayout({ children }) {
             {children}
           </main>
           <Footer />
+          <ChatBot />
         </ThemeProvider>
       </body>
     </html>

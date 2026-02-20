@@ -134,13 +134,13 @@ export default function About() {
         <div className="flex flex-col lg:flex-row gap-20">
           
           <div className="lg:w-1/2 space-y-10">
-            <div className="about-heading-container space-y-4">
+            <div className="about-heading-container space-y-2">
               <h2 className="about-label text-xs font-bold uppercase tracking-[0.4em] text-primary">
                 01. About Me
               </h2>
-              <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none flex flex-wrap">
-                {renderSplitText("Architecting")}
-                <span className="text-muted-foreground">{renderSplitText("Digital Excellence.")}</span>
+              <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.75]">
+                <div className="block">{renderSplitText("Architecting")}</div>
+                <div className="block text-muted-foreground">{renderSplitText("Digital Excellence.")}</div>
               </h3>
             </div>
 

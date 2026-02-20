@@ -7,9 +7,9 @@ import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
   { name: "About", href: "#about" },
-  { name: "Expertise", href: "#about" }, // Same section
   { name: "Experience", href: "#experience" },
   { name: "Projects", href: "#projects" },
+  { name: "Skills", href: "#skills" },
   { name: "FAQ", href: "#faq" },
 ];
 

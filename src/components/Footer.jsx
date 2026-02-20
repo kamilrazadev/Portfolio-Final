@@ -111,9 +111,9 @@ export default function Footer() {
             <h4 className="text-xs font-black uppercase tracking-[0.4em] text-primary">Socials</h4>
             <div className="flex gap-4">
               {[
-                { icon: <Linkedin className="w-5 h-5" />, href: "https://linkedin.com/in/kamilraza" },
-                { icon: <Github className="w-5 h-5" />, href: "https://github.com/kamilraza" },
-                { icon: <Mail className="w-5 h-5" />, href: "mailto:mkamilraza@outlook.com" }
+                { icon: <Linkedin className="w-5 h-5" />, href: "https://linkedin.com/in/kamilrazadev" },
+                { icon: <Github className="w-5 h-5" />, href: "https://github.com/kamilrazadev" },
+                { icon: <Mail className="w-5 h-5" />, href: "mailto:kamilraza@devaveglobal.com" }
               ].map((social, i) => (
                 <a 
                   key={i} 
@@ -136,10 +136,6 @@ export default function Footer() {
           <p className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">
             © {currentYear} Muhammad Kamil Raza. Built for performance.
           </p>
-          <div className="flex gap-10">
-            <a href="#" className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground hover:text-primary transition-colors">Privacy</a>
-            <a href="#" className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground hover:text-primary transition-colors">Terms</a>
-          </div>
           <button 
             onClick={scrollToTop}
             className="w-12 h-12 rounded-full bg-foreground text-background flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-2xl group"

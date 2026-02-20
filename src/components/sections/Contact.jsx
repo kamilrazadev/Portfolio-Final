@@ -76,11 +76,11 @@ export default function Contact() {
   return (
     <section id="contact" ref={containerRef} className="py-20 bg-background relative overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="contact-heading-container mb-24">
-            <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-primary mb-6">06. Connection</h2>
-            <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none flex flex-wrap">
-                {renderSplitText("Start a")}
-                <span className="text-muted-foreground">{renderSplitText("Conversation.")}</span>
+        <div className="contact-heading-container mb-20">
+            <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-primary mb-6">07. Connection</h2>
+            <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.75]">
+                <div className="block">{renderSplitText("Start a")}</div>
+                <div className="block text-muted-foreground">{renderSplitText("Conversation.")}</div>
             </h3>
         </div>
 
@@ -102,19 +102,19 @@ export default function Contact() {
                   <div className="space-y-6 pt-10 border-t border-background/10">
                     <div className="flex items-center gap-6">
                        <Mail className="w-6 h-6 text-primary" />
-                       <span className="text-lg font-bold tracking-tight">mkamilraza@outlook.com</span>
+                       <span className="text-lg font-bold tracking-tight">kamilraza@devaveglobal.com</span>
                     </div>
                     <div className="flex items-center gap-6">
                        <Phone className="w-6 h-6 text-primary" />
-                       <span className="text-lg font-bold tracking-tight">+92 342 2780709</span>
+                       <span className="text-lg font-bold tracking-tight">+92 319 699 5115</span>
                     </div>
                   </div>
                </div>
 
                <div className="flex gap-4 pt-12 relative z-10">
                   {[
-                    { icon: <Linkedin className="w-5 h-5" />, href: "#" },
-                    { icon: <Github className="w-5 h-5" />, href: "#" }
+                    { icon: <Linkedin className="w-5 h-5" />, href: "https://linkedin.com/in/kamilrazadev" },
+                    { icon: <Github className="w-5 h-5" />, href: "https://github.com/kamilrazadev" }
                   ].map((social, i) => (
                     <a key={i} href={social.href} className="w-14 h-14 rounded-full border border-background/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-500">
                       {social.icon}

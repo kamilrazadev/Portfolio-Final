@@ -34,15 +34,6 @@ export default function Hero() {
         stagger: 0.2,
         ease: "power3.out",
       });
-
-      // Simple float animation for scroll indicator
-      gsap.to(".scroll-indicator", {
-        y: 10,
-        repeat: -1,
-        yoyo: true,
-        duration: 1.5,
-        ease: "sine.inOut"
-      });
     }, containerRef);
 
     return () => ctx.revert();
@@ -99,7 +90,8 @@ export default function Hero() {
             </a>
             
             <a 
-              href="/resume.pdf" 
+              href="/docs/cv.pdf" 
+              download="M Kamil Raza - Full Stack Developer.pdf"
               className="flex items-center gap-3 px-8 py-4 border border-border rounded-full font-bold text-base hover:bg-muted transition-all"
             >
               Resume <Download className="w-5 h-5" />

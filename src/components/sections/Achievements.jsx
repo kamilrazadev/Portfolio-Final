@@ -102,13 +102,13 @@ export default function Achievements() {
       <div className="container mx-auto px-6">
         
         {/* Standardized Section Header */}
-        <div className="achieve-heading-container mb-24 text-center mx-auto max-w-4xl">
+        <div className="achieve-heading-container mb-20 text-center mx-auto max-w-4xl">
           <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-primary mb-6">
-            04. Excellence
+            05. Excellence
           </h2>
-          <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none flex flex-wrap justify-center">
-            {renderSplitText("Achievements")}
-            <span className="text-muted-foreground">{renderSplitText("& Recognition.")}</span>
+          <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.75]">
+            <div className="block">{renderSplitText("Achievements")}</div>
+            <div className="block text-muted-foreground">{renderSplitText("& Recognition.")}</div>
           </h3>
         </div>
 

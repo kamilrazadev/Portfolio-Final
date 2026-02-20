@@ -110,13 +110,13 @@ export default function Timeline() {
     <section id="experience" ref={containerRef} className="py-20 bg-background relative overflow-hidden">
       <div className="container mx-auto px-6">
         
-        <div className="exp-heading-container mb-24 max-w-4xl">
+        <div className="exp-heading-container mb-20 max-w-4xl">
           <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-primary mb-6">
             02. My Journey
           </h2>
-          <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none flex flex-wrap">
-            {renderSplitText("Professional")}
-            <span className="text-muted-foreground">{renderSplitText("Experience.")}</span>
+          <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.75]">
+            <div className="block">{renderSplitText("Professional")}</div>
+            <div className="block text-muted-foreground">{renderSplitText("Experience.")}</div>
           </h3>
         </div>
 
@@ -157,7 +157,7 @@ export default function Timeline() {
                     {exp.tech.map((t, i) => (
                       <span 
                         key={i} 
-                        className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-muted/50 text-muted-foreground border border-border group-hover:border-primary/20 transition-colors"
+                        className="text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full bg-muted/50 text-muted-foreground border border-border group-hover:border-primary/20 transition-colors"
                       >
                         {t}
                       </span>

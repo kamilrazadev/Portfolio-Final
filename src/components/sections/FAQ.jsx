@@ -83,11 +83,11 @@ export default function FAQ() {
   return (
     <section id="faq" ref={containerRef} className="py-20 bg-background relative overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="faq-heading-container mb-20">
-            <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-primary mb-6">05. FAQ</h2>
-            <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none flex flex-wrap">
-                {renderSplitText("Intellectual")}
-                <span className="text-muted-foreground">{renderSplitText("Inquiry.")}</span>
+        <div className="faq-heading-container mb-16">
+            <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-primary mb-6">06. FAQ</h2>
+            <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.75]">
+                <div className="block">{renderSplitText("Intellectual")}</div>
+                <div className="block text-muted-foreground">{renderSplitText("Inquiry.")}</div>
             </h3>
         </div>
 
@@ -127,22 +127,33 @@ export default function FAQ() {
             ))}
           </div>
 
-          {/* Abstract Visual Element */}
+          {/* Abstract Visual & CTA Element */}
           <div className="hidden lg:block w-2/5">
-            <div className="faq-visual relative aspect-square">
+            <div className="faq-visual relative aspect-square flex flex-col items-center justify-center">
                <div className="absolute inset-0 rounded-full border border-primary/20 animate-[spin_20s_linear_infinite]" />
                <div className="absolute inset-4 rounded-full border border-dashed border-muted-foreground/20 animate-[spin_15s_linear_infinite_reverse]" />
-               <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center space-y-2">
-                     <span className="text-8xl font-black text-primary/10">?</span>
-                     <p className="text-[10px] font-black uppercase tracking-[0.5em] text-muted-foreground">Knowledge Base</p>
+               
+               <div className="relative z-10 text-center space-y-8 p-12">
+                  <div className="space-y-2">
+                    <span className="text-8xl font-black text-primary/10">?</span>
+                    <h4 className="text-2xl font-black uppercase tracking-tighter">Need more <br /> <span className="text-primary">In-depth</span> info?</h4>
+                  </div>
+                  <p className="text-muted-foreground font-medium leading-relaxed">
+                    My specialized AI assistant is ready to provide detailed insights into my architectural approach and technical expertise.
+                  </p>
+                  <div className="flex flex-col items-center gap-4 pt-4">
+                    <div className="flex items-center gap-3 px-6 py-3 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest animate-bounce">
+                      Talk to Assistant 
+                      <ArrowRight className="w-4 h-4 rotate-45" />
+                    </div>
                   </div>
                </div>
+
                {/* Floating Info Pill */}
-               <div className="absolute top-1/4 -right-10 p-4 bg-background border border-border rounded-2xl shadow-2xl animate-bounce">
+               <div className="absolute top-1/4 -right-10 p-4 bg-background border border-border rounded-2xl shadow-2xl">
                   <div className="flex items-center gap-3">
                      <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                     <span className="text-[10px] font-black uppercase tracking-widest">Active Response</span>
+                     <span className="text-[10px] font-black uppercase tracking-widest">Assistant Active</span>
                   </div>
                </div>
             </div>
