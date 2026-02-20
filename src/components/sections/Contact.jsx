@@ -3,18 +3,20 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Mail, Github, Linkedin, Send, MapPin, Phone, MessageSquare } from "lucide-react";
+import { Mail, Github, Linkedin, Send, MapPin, Phone, MessageSquare, CheckCircle2 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const [formState, setFormState] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmittingSuccessful] = useState(false);
   const containerRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       const ctx = gsap.context(() => {
+        // Character wavy reveal animation
         const chars = gsap.utils.toArray(".contact-char");
         gsap.fromTo(chars, 
           { y: "110%" },
@@ -63,14 +65,34 @@ export default function Contact() {
     ));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-        setIsSubmitting(false);
-        alert("Message received. Architecture analysis in progress...");
+    
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
+      });
+
+      if (response.ok) {
+        setIsSubmittingSuccessful(true);
         setFormState({ name: "", email: "", message: "" });
-    }, 2000);
+        // Reset success message after 5 seconds
+        setTimeout(() => setIsSubmittingSuccessful(false), 5000);
+      } else {
+        const data = await response.json();
+        throw new Error(data.error || "Failed to send message");
+      }
+    } catch (error) {
+      console.error("Submission Error:", error);
+      alert("Oops! Something went wrong. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -168,6 +190,27 @@ export default function Contact() {
                     {isSubmitting ? "Syncing..." : "Transmit Message"}
                     <Send className="w-5 h-5" />
                   </button>
+
+                  {/* Custom Success Message */}
+                  {isSubmitted && (
+                    <div className="absolute inset-0 bg-background/95 backdrop-blur-md flex items-center justify-center p-8 text-center z-20 animate-in fade-in zoom-in duration-500">
+                      <div className="space-y-6">
+                        <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto border border-primary/20">
+                          <CheckCircle2 className="w-10 h-10 text-primary animate-bounce" />
+                        </div>
+                        <div className="space-y-2">
+                          <h4 className="text-3xl font-black uppercase tracking-tighter">Mission Received!</h4>
+                          <p className="text-muted-foreground font-medium">Thank you for reaching out. I've received your transmission and will get back to you shortly.</p>
+                        </div>
+                        <button 
+                          onClick={() => setIsSubmittingSuccessful(false)}
+                          className="text-[10px] font-black uppercase tracking-widest text-primary border-b border-primary/30 hover:border-primary transition-all"
+                        >
+                          Send another message
+                        </button>
+                      </div>
+                    </div>
+                  )}
                </form>
             </div>
           </div>

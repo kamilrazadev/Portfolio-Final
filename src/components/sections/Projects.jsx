@@ -42,7 +42,7 @@ const projects = [
     tech: ["React", "i18n", "Node.js"],
     link: "https://solmoneytransfer.com",
     github: "#",
-    image: "/projects/solmoney.png",
+    image: "/images/projects/solmoney.png",
   },
   {
     title: "ExamHub",
@@ -51,7 +51,7 @@ const projects = [
     tech: ["MERN", "Tailwind CSS", "Google Maps API"],
     link: "https://examhub.app",
     github: "#",
-    image: "/projects/examhub.png",
+    image: "/images/projects/examhub.png",
   },
   {
     title: "PreMed Pk",
@@ -60,7 +60,7 @@ const projects = [
     tech: ["MERN", "Bootstrap", "Material UI"],
     link: "https://premed.pk",
     github: "#",
-    image: "/projects/premed.png",
+    image: "/images/projects/premed.png",
   },
 ];
 

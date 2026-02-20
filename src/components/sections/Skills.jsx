@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTheme } from "next-themes";
 import { 
   Code2, Server, Globe, Settings, Users, Layout, 
-  Terminal, Cpu, Sparkles, BrainCircuit
+  Terminal, Cpu, BrainCircuit
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -110,6 +110,23 @@ export default function Skills() {
     setMounted(true);
     const timer = setTimeout(() => {
       const ctx = gsap.context(() => {
+        // Character wavy reveal animation
+        const chars = gsap.utils.toArray(".skills-char");
+        gsap.fromTo(chars, 
+          { y: "110%" },
+          {
+            scrollTrigger: {
+              trigger: ".skills-heading-container",
+              start: "top 90%",
+              toggleActions: "play none none none",
+            },
+            y: 0,
+            duration: 1,
+            stagger: 0.02,
+            ease: "power4.out",
+          }
+        );
+
         gsap.fromTo(".bento-card", 
           { y: 80, opacity: 0, scale: 0.95 },
           {

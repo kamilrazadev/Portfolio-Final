@@ -16,16 +16,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Muhammad Kamil Raza | Full Stack MERN Developer | Scalable Web Architect",
-  description: "Experienced Full Stack MERN Developer specializing in React, Next.js, Node.js, and secure backend architecture. Building scalable enterprise platforms and secure fintech solutions.",
+  title: "Muhammad Kamil Raza (kamilrazadev) | Full Stack MERN Developer",
+  description:
+    "Official portfolio of kamilrazadev (Muhammad Kamil Raza). Experienced Full Stack MERN Developer specializing in React, Next.js, and secure backend architecture.",
+  metadataBase: new URL("https://kamilraza.me"),
+  icons: {
+    icon: "/images/logo.png",
+    shortcut: "/images/logo.png",
+    apple: "/images/logo.png",
+  },
   keywords: [
+    "kamilrazadev",
+    "Muhammad Kamil Raza",
     "Full Stack Developer Pakistan",
     "MERN Stack Developer",
     "React Next.js Developer",
     "Scalable Web Application Developer",
     "Secure Enterprise Platforms",
-    "Muhammad Kamil Raza",
-    "MERN Developer Karachi"
   ],
   authors: [{ name: "Muhammad Kamil Raza" }],
   creator: "Muhammad Kamil Raza",
@@ -37,15 +44,16 @@ export const metadata = {
   },
   openGraph: {
     title: "Muhammad Kamil Raza | Full Stack MERN Developer",
-    description: "Building secure, high-performance digital platforms that scale with confidence.",
-    url: "https://kamilraza.me", // Placeholder
+    description:
+      "Building secure, high-performance digital platforms that scale with confidence.",
+    url: "https://kamilraza.me",
     siteName: "Muhammad Kamil Raza Portfolio",
     images: [
       {
-        url: "/og-image.jpg", // Placeholder
+        url: "/images/logo.png",
         width: 1200,
         height: 630,
-        alt: "Muhammad Kamil Raza Portfolio",
+        alt: "Muhammad Kamil Raza Portfolio Logo",
       },
     ],
     locale: "en_US",
@@ -54,8 +62,9 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Muhammad Kamil Raza | Full Stack MERN Developer",
-    description: "Building secure, high-performance digital platforms that scale with confidence.",
-    images: ["/og-image.jpg"], // Placeholder
+    description:
+      "Building secure, high-performance digital platforms that scale with confidence.",
+    images: ["/images/logo.png"],
   },
   robots: {
     index: true,
@@ -63,9 +72,9 @@ export const metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
 };
@@ -80,19 +89,28 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              "name": "Muhammad Kamil Raza",
-              "jobTitle": "Full Stack MERN Developer",
-              "url": "https://kamilraza.me",
-              "sameAs": [
+              name: "Muhammad Kamil Raza",
+              alternateName: "kamilrazadev",
+              jobTitle: "Full Stack MERN Developer",
+              url: "https://kamilraza.me",
+              sameAs: [
                 "https://linkedin.com/in/kamilrazadev",
-                "https://github.com/kamilrazadev"
+                "https://github.com/kamilrazadev",
               ],
-              "knowsAbout": ["React.js", "Next.js", "Node.js", "MongoDB", "MERN Stack", "Cybersecurity", "Cloud Architecture"],
-              "alumniOf": {
+              knowsAbout: [
+                "React.js",
+                "Next.js",
+                "Node.js",
+                "MongoDB",
+                "MERN Stack",
+                "Cybersecurity",
+                "Cloud Architecture",
+              ],
+              alumniOf: {
                 "@type": "CollegeOrUniversity",
-                "name": "Sindh Madressatul Islam University"
-              }
-            })
+                name: "Sindh Madressatul Islam University",
+              },
+            }),
           }}
         />
       </head>

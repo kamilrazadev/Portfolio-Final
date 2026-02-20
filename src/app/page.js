@@ -10,7 +10,22 @@ import Contact from "@/components/sections/Contact";
 export default function Home() {
   return (
     <>
-      {/* ... previous content ... */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "kamilrazadev | Muhammad Kamil Raza Portfolio",
+            "description": "Professional portfolio of kamilrazadev, a results-driven Full Stack Developer specializing in MERN Stack and Scalable Web Architecture.",
+            "mainEntity": {
+              "@type": "Person",
+              "name": "Muhammad Kamil Raza",
+              "alternateName": "kamilrazadev"
+            }
+          })
+        }}
+      />
       
       {/* Sections */}
       <div className="flex flex-col">

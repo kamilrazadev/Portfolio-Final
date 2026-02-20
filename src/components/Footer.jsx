@@ -61,10 +61,12 @@ export default function Footer() {
         {/* Middle Section: Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 py-24">
           <div className="footer-column space-y-8">
-            <a href="#" className="flex items-center gap-2 group">
-              <div className="w-12 h-12 rounded-full bg-foreground flex items-center justify-center text-background font-black text-2xl group-hover:scale-110 transition-transform">
-                K
-              </div>
+            <a href="#" className="flex items-center gap-3 group">
+              <img 
+                src="/images/logo.png" 
+                alt="Logo" 
+                className="w-12 h-12 object-contain group-hover:scale-110 transition-transform"
+              />
               <span className="font-black text-2xl tracking-tighter uppercase">
                 Kamil <span className="opacity-40 font-medium">Raza</span>
               </span>

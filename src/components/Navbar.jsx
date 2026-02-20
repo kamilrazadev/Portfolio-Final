@@ -37,10 +37,12 @@ export default function Navbar() {
           : "bg-background/30 backdrop-blur-md border-white/5 shadow-sm"
       )}>
                   {/* Logo */}
-                  <a href="#" className="flex items-center gap-2 group px-4">
-                    <div className="w-10 h-10 rounded-full bg-foreground flex items-center justify-center text-background font-black text-xl group-hover:scale-110 transition-transform">
-                      K
-                    </div>
+                  <a href="#" className="flex items-center gap-3 group px-4">
+                    <img 
+                      src="/images/logo.png" 
+                      alt="Logo" 
+                      className="w-10 h-10 object-contain group-hover:scale-110 transition-transform"
+                    />
                     <span className="font-black text-xl tracking-tighter hidden sm:block uppercase">
                       Kamil <span className="opacity-50 font-medium">Raza</span>
                     </span>

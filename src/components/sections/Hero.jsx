@@ -62,7 +62,7 @@ export default function Hero() {
 
       <div className="container mx-auto px-6 relative z-10 text-center -mt-10">
         <div className="max-w-5xl mx-auto">
-          <div className="hero-reveal inline-block px-4 py-1 rounded-full border border-border bg-muted/50 text-muted-foreground text-[10px] font-bold uppercase tracking-[0.3em] mb-8">
+          <div className="hero-reveal inline-block px-4 py-1 rounded-full border border-border bg-muted/50 text-muted-foreground text-[10px] font-bold uppercase tracking-[0.3em] mb-8 block w-fit mx-auto">
             Available for New Opportunities
           </div>
           
