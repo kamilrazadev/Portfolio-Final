@@ -16,10 +16,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Muhammad Kamil Raza (kamilrazadev) | Full Stack MERN Developer",
+  title: "kamilrazadev | Muhammad Kamil Raza | Full Stack MERN Developer",
   description:
     "Official portfolio of kamilrazadev (Muhammad Kamil Raza). Experienced Full Stack MERN Developer specializing in React, Next.js, and secure backend architecture.",
-  metadataBase: new URL("https://kamilraza.me"),
+  metadataBase: new URL("https://kamilraza.devaveglobal.com"),
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/images/logo.png",
     shortcut: "/images/logo.png",
@@ -43,17 +46,17 @@ export const metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Muhammad Kamil Raza | Full Stack MERN Developer",
+    title: "kamilrazadev | Muhammad Kamil Raza | Full Stack MERN Developer",
     description:
       "Building secure, high-performance digital platforms that scale with confidence.",
-    url: "https://kamilraza.me",
-    siteName: "Muhammad Kamil Raza Portfolio",
+    url: "https://kamilraza.devaveglobal.com",
+    siteName: "kamilrazadev Portfolio",
     images: [
       {
         url: "/images/logo.png",
         width: 1200,
         height: 630,
-        alt: "Muhammad Kamil Raza Portfolio Logo",
+        alt: "kamilrazadev Portfolio Logo",
       },
     ],
     locale: "en_US",
@@ -61,7 +64,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Muhammad Kamil Raza | Full Stack MERN Developer",
+    title: "kamilrazadev | Muhammad Kamil Raza | Full Stack MERN Developer",
     description:
       "Building secure, high-performance digital platforms that scale with confidence.",
     images: ["/images/logo.png"],
@@ -92,7 +95,7 @@ export default function RootLayout({ children }) {
               name: "Muhammad Kamil Raza",
               alternateName: "kamilrazadev",
               jobTitle: "Full Stack MERN Developer",
-              url: "https://kamilraza.me",
+              url: "https://kamilraza.devaveglobal.com",
               sameAs: [
                 "https://linkedin.com/in/kamilrazadev",
                 "https://github.com/kamilrazadev",

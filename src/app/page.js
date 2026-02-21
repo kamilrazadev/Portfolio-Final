@@ -17,6 +17,7 @@ export default function Home() {
             "@context": "https://schema.org",
             "@type": "WebPage",
             "name": "kamilrazadev | Muhammad Kamil Raza Portfolio",
+            "url": "https://kamilraza.devaveglobal.com",
             "description": "Professional portfolio of kamilrazadev, a results-driven Full Stack Developer specializing in MERN Stack and Scalable Web Architecture.",
             "mainEntity": {
               "@type": "Person",
